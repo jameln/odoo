@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report file="gctjara.report_cmdclient" id="cmdclient_report"
+            model="gctjara.cmdclient" name="gc-tjara.report_cmdclient"
+            report_type="qweb-pdf" string="Commande client"/>
+        <template id="report_cmdclient">
+            <t t-call="report.html_container">
+                <t t-as="o" t-foreach="docs">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+
+                            <h3>Commade client N°
+                                <span t-field="o.numerocmdc"/>
+                            </h3>
+                            <div class="col-xs-6 pull-left">
+                                <p style=" border-color:#0C6592; border: 2px dotted black;
+                                    padding: 35px; background: #F7F7F0; border-radius: 10px;">
+                                    Crée le :
+                                    <span t-field="o.datecommande"/>
+                                    <br/>
+                                    Client :
+                                    <span t-field="o.client_id"/>
+                                    <br/>
+                                </p>
+                            </div>
+
+                            <table class="table table-condensed">
+                                <thead style="border:solid 2px; border-color:#0C6592">
+                                    <tr>
+
+                                        <th class="text-left">Produits</th>
+                                        <th class="text-left">Prix unitaire</th>
+                                        <th class="text-left">Quantité</th>
+                                        <th class="text-left">Quantité Total</th>
+                                        <th class="text-left">Prix HT</th>
+                                        <th class="text-left">TVA</th>
+                                        <th class="text-left">Total Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="border:solid 2px; border-color:#0C6592">
+                                    <t t-foreach="o.lignecmd_id" t-as="page">
+                                        <tr>
+                                            <td>
+                                                <t t-esc="page.embalageproduit_id.name"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="page.prixvente"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="page.quantite"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="page.quantitetot"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="page.prix_ht"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="page.tva"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="page.prix_total"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+
+                            <div class="row" name="total">
+                                <div class="col-xs-4 pull-right">
+                                    <table class="table table-condensed" style="border:solid 2px; border-color:#0C6592">
+
+                                        <tr class="border-black">
+                                            <td>
+                                                <strong>Montant TVA</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.montanttva"/>
+                                            </td>
+                                            <br/>
+                                        </tr>
+                                        <tr class="border-black">
+                                            <td>
+                                                <strong>Remise</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.montantremise"/>
+                                            </td>
+                                            <br/>
+                                        </tr>
+
+
+                                        <tr class="border-black">
+                                            <td>
+                                                <strong>Montant TTC</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.montant"/>
+
+                                            </td>
+                                            <br/>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+
+                        </div>
+
+                    </t>
+
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

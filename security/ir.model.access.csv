@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gc-tjara_gc-tjara,gc-tjara.gc-tjara,model_gc-tjara_gc-tjara,,1,0,0,0
+access_gctjara_lignecmdvente,access_gctjara_lignecmdvente,model_gctjara_lignecmdvente,,1,0,0,0
+access_gctjara_lignefactachat,access_gctjara_lignefactachat,model_gctjara_lignefactachat,,1,0,0,0
+access_gctjara_bonentree,access_gctjara_bonentree,model_gctjara_bonentree,,1,0,0,0
+access_gctjara_lignecmdachat,access_gctjara_lignecmdachat,model_gctjara_lignecmdachat,,1,0,0,0
+access_gctjara_lignebonlivraison,access_gctjara_lignebonlivraison,model_gctjara_lignebonlivraison,,1,0,0,0
+access_gctjara_bonlivraison,access_gctjara_bonlivraison,model_gctjara_bonlivraison,,1,0,0,0
+access_gctjara_lignefactvente,access_gctjara_lignefactvente,model_gctjara_lignefactvente,,1,0,0,0
+access_gctjara_mvtstock,access_gctjara_mvtstock,model_gctjara_mvtstock,,1,0,0,0
+access_gctjara_client,access_gctjara_client,model_gctjara_client,,1,0,0,0
+access_gctjara_fournisseur,access_gctjara_fournisseur,model_gctjara_fournisseur,,1,0,0,0

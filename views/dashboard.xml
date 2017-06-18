@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <record id="facturevente_graph_action" model="ir.actions.act_window">
+            <field name="name">Factures Ventes</field>
+            <field name="res_model">gctjara.facturevente</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+        </record>
+        <record id="factureachat_graph_action" model="ir.actions.act_window">
+            <field name="name">Factures Achats</field>
+            <field name="res_model">gctjara.factureachat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+        </record>
+          <record id="produitemballee_graph_action" model="ir.actions.act_window">
+            <field name="name">Produits emballées</field>
+            <field name="res_model">gctjara.produitemballee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+        </record>
+     
+         <record id="regvente_graph_action" model="ir.actions.act_window">
+            <field name="name">Réglement vente</field>
+            <field name="res_model">gctjara.regvente</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+        </record>
+         <record id="regachat_graph_action" model="ir.actions.act_window">
+            <field name="name">Réglement achats</field>
+            <field name="res_model">gctjara.regachat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+        </record>
+        <record id="board_gctjara_form" model="ir.ui.view">
+            <field name="name">Dashboard Form</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="GC-TJARA Dashboard" class="header">
+                    <board style="1-1">
+
+
+                          <column>
+                            <action name="%(produitemballee_graph_action)d" string="Produits embalées"/>
+                            <action name="%(regachat_graph_action)d" string="Réglement achat"/>
+                            <action name="%(regvente_graph_action)d" string="Réglement vente"/>
+                        </column>
+
+                       
+                        <column>
+                            <action   name="%(facturevente_graph_action)d" string="Ventes"/>
+                            <action   name="%(factureachat_graph_action)d" string="Achats"/>
+                        </column>
+
+                    </board>
+                </form>
+            </field>
+        </record>
+        <record id="open_board_gctjara" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_gctjara_form"/>
+        </record>
+    </data>
+</odoo>

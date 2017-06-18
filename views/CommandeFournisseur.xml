@@ -1,0 +1,228 @@
+<odoo>
+    <data>
+        <record id="cmdfournisseur_form_view" model="ir.ui.view">
+            <field name="name">cmdfournisseur.form</field>
+            <field name="model">gctjara.cmdfournisseur</field>
+            <field name="arch" type="xml">
+                <form string="Commande fournisseur">
+                    <header string="Facture">
+                        <!--<button string="Valider la facture test" type="object" name="afficher" 
+                            confirm="Etes vous sur?"/> -->
+                        <button class="oe_highlight"
+                                name="cmdfrs_brouillon" states="an"
+                                string="Retour pour correction" type="object"/>
+                        <button class="oe_highlight"
+                                name="cmdfrs_valider" states="br"
+                                string="Valider la commande" type="object"/>
+                        <button class="oe_highlight"
+                                name="cmdfrs_annuler" states="br"
+                                string="Annuler la commande" type="object"/>
+                        <button class="oe_highlight"
+                                name="cmdfrs_terminer" states="va"
+                                string="Marquer commande comme terminée" type="object"/>
+                        <field name="state"
+                               statusbar_colors="{'br':'white','va':'blue','an':'red','tr':'green'}"
+                               statusbar_visible="br,va,tr,an" widget="statusbar"/>
+                    </header>
+                    <sheet>
+
+                          <div class="oe_button_box" name="button_box">
+
+
+                               <button name="toggle_valid" type="object" class="oe_stat_button oe_read_only" icon="fa-check" style="font-weight: bold; font-size: 16px;">
+                                <field name="valid_bool" widget="boolean_button" options='{"terminology": {
+                                    "string_true": "Confirmé",
+                                    "hover_true": "Non Confirmé",
+                                    "string_false": "Non Confirmé",
+                                    "hover_false": "Confirmé"
+                                }}'/>
+                                </button>
+                            </div>
+                        <group col="2" class="header">
+                            <group>
+                                <field name="numero" readonly="1"/>
+                                <field name="datecommande"/>
+                                <field name="datereception"/>
+                            </group>
+                            <group>
+                                <field name="fournisseur_id"/>
+                                <field name="emplacement" options="{'horizontal': true}" widget="radio" />
+                             
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page class="oe_page_Title" string="Produits">
+                                <group>
+                                    <field name="lignecmd_id" nolabel="1">
+                                        <tree editable="bottom">
+                                            <field name="embalageproduit_id"  options='{"no_create":1,"no_create_edit":1}'/>
+                                            <field name="quantite"/>
+                                            <field name="quantitetot"/>
+                                            <field name="prixunit" readonly="1"/>
+                                            <field name="tva"/>
+                                            <field name="remise"/>
+                                            <field name="prix_ht" readonly="1"/>
+                                            <field name="prix_total" readonly="1"/>
+
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name="embalageproduit_id"/>
+
+                                            </group>
+
+                                        </form>
+
+                                    </field>
+
+                                </group>
+                                <group class="oe_subtotal_footer">
+                                    <field name="montant_ht"/>
+                                    <field name="montantremise"/>
+                                    <field name="montanttva" />
+
+                                    <label class="oe_subtotal_footer_separator" string="Montant TTC"/> 
+                                    <field name="montant"  nolabel="1"/>
+
+                                </group>
+
+                            </page>
+                            <page class="oe_page_Title" string="Description">
+                                <group>
+<!--
+                                    <field name="description" nolabel="1"/>
+-->
+                                    <field name="texthtml" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page class="oe_page_Title" string="Attachement">
+                                <group>
+                                    <field name="attachment">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="datas_fname"/>
+                                            <field name="mimetype"/>
+                                            <field name="create_date"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                             <page string="Détails" class="oe_read_only">
+                                <group>
+                                    <field name="create_uid"/>
+                                    <field name="create_date"/>
+                                    <field name="write_uid"/>
+                                    <field name="write_date"/>
+                                </group>
+                             </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="cmdfournisseur_tree_view" model="ir.ui.view">
+            <field name="name">cmdfournisseur.tree</field>
+            <field name="model">gctjara.cmdfournisseur</field>
+            <field name="arch" type="xml">
+                <tree string="Commande fournisseur"  decoration-info="state == 'va'"
+                      decoration-muted="state == 'an'" decoration-success="state == 'tr'">
+                    <field name="numero"/>
+                    <field name="datecommande"/>
+                    <field name="datereception"/>
+                    <field name="state"/>
+                    <field name="fournisseur_id"/>
+                    <field name="montant" sum="True"/>
+                    <field name="create_uid"/>
+                </tree>
+            </field>
+        </record>
+        <record id='cmdfournisseur_search_view' model='ir.ui.view'>
+            <field name="name">cmdfournisseur.search</field>
+            <field name="model">gctjara.cmdfournisseur</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="numero"/>
+                    <field name="state"/>
+                    <field name="fournisseur_id"/>
+                    <field name="create_uid"/>
+                    <filter name="filter" string="States" domain="[('state', '!=', 'an')]"/>
+                    <group string="Group By">
+                        <filter name="by_state" string="States"
+                                context="{'group_by': 'state'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+        <record id="cmdfournisseur_list_action" model="ir.actions.act_window">
+            <field name="name">Commande fournisseur</field>
+            <field name="res_model">gctjara.cmdfournisseur</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,search</field>
+             <field name="context"
+                   eval="{'search_default_filter': 1,'search_default_by_state': 1}"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Créer la première commande</p>
+            </field>
+        </record>
+        <!-- WorkFlow-->
+        <record id="commandefournisseur_workflow" model="workflow">
+            <field name="name">gctjara.workflow_validation_commande_fournisseur</field>
+            <field name="osv">gctjara.cmdfournisseur</field>
+            <field name="on_create">True</field>
+        </record>
+        <record id="activity_depart" model="workflow.activity">
+            <field name="wkf_id" ref="commandefournisseur_workflow"/>
+            <field name="flow_start">True</field>
+            <field name="name">brouillon</field>
+            <field name="kind">function</field>
+            <field name="action">cmdfrs_brouillon()</field>
+        </record>
+        <record id="activity_valide" model="workflow.activity">
+            <field name="wkf_id" ref="commandefournisseur_workflow"/>
+            <field name="name">validee</field>
+            <field name="kind">function</field>
+            <field name="action">cmdfrs_valider()</field>
+        </record>
+        <record id="activity_paye" model="workflow.activity">
+            <field name="wkf_id" ref="commandefournisseur_workflow"/>
+            <field name="flow_stop">True</field>
+            <field name="name">terminee</field>
+            <field name="kind">function</field>
+            <field name="action">cmdfrs_terminer()</field>
+        </record>
+        <record id="activity_annule" model="workflow.activity">
+            <field name="wkf_id" ref="commandefournisseur_workflow"/>
+            <field name="flow_stop">True</field>
+            <field name="name">annulee</field>
+            <field name="kind">function</field>
+            <field name="action">cmdfrs_annuler()</field>
+        </record>
+        <record id="trans_br_va" model="workflow.transition">
+            <field name="act_from" ref="activity_depart"/>
+            <field name="act_to" ref="activity_valide"/>
+            <field name="signal">fct_valider</field>
+        </record>
+        <record id="trans_va_pa" model="workflow.transition">
+            <field name="act_from" ref="activity_valide"/>
+            <field name="act_to" ref="activity_paye"/>
+            <field name="signal">cmdfrs_terminer</field>
+        </record>
+        <record id="trans_br_an" model="workflow.transition">
+            <field name="act_from" ref="activity_depart"/>
+            <field name="act_to" ref="activity_annule"/>
+            <field name="signal">cmdfrs_annuler</field>
+        </record>
+        <record id="trans_an_br" model="workflow.transition">
+            <field name="act_from" ref="activity_annule"/>
+            <field name="act_to" ref="activity_depart"/>
+            <field name="signal">cmdfrs_brouillon</field>
+        </record>
+        <!--end workflow -->
+    </data>
+</odoo>

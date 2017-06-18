@@ -1,0 +1,213 @@
+<odoo>
+    <data>
+        <record id="gctjara_group_ventes" model="res.groups">
+            <field name="name">GC-TJARA / Ventes</field>
+            <field name="comment">Commentaire sur le groupe facturation de vente</field>
+            <field name="category_id" ref="base.module_category_administration"/>
+        </record>
+
+        <record id="gctjara_group_achats" model="res.groups">
+            <field name="name">GC-TJARA / Achats</field>
+            <field name="comment">Commentaire sur le groupe facturation d'achat</field>
+            <field name="category_id" ref="base.module_category_administration"/>
+           
+        </record>
+        
+        <record id="gctjara_group_admin" model="res.groups">
+            <field name="name">GC-TJARA/ Administrateurs</field>
+            <field name="comment">Commentaire sur le groupe Administrateurs</field>
+            <field name="category_id" ref="base.module_category_administration"/>
+        </record>
+
+         <record id="gctjara_access_commande_achat" model="ir.model.access">
+            <field name="name">Commande achat</field>
+            <field name="model_id" ref="model_gctjara_cmdfournisseur"/>
+            <field name="group_id" ref="gctjara_group_achats"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+        <record id="gctjara_access_ligne_commande_achat" model="ir.model.access">
+            <field name="name">Commande vente</field>
+            <field name="model_id" ref="model_gctjara_lignecmdachat"/>
+            <field name="group_id" ref="gctjara_group_ventes"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+        <record id="gctjara_access_commande_vente" model="ir.model.access">
+            <field name="name">Commande vente</field>
+            <field name="model_id" ref="model_gctjara_cmdclient"/>
+            <field name="group_id" ref="gctjara_group_ventes"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="False" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+
+          <record id="gctjara_access_ligne_commande_vente" model="ir.model.access">
+            <field name="name">Commande vente</field>
+            <field name="model_id" ref="model_gctjara_lignecmdvente"/>
+            <field name="group_id" ref="gctjara_group_ventes"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+
+        <record id="gctjara_access_facture_vente" model="ir.model.access">
+            <field name="name">Facture vente</field>
+            <field name="model_id" ref="model_gctjara_facturevente"/>
+            <field name="group_id" ref="gctjara_group_ventes"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+
+        <record id="gctjara_access_ligne_facture_vente" model="ir.model.access">
+            <field name="name">Ligne facture vente</field>
+            <field name="model_id" ref="model_gctjara_lignefactvente"/>
+            <field name="group_id" ref="gctjara_group_ventes"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+        <record id="gctjara_access_facture_achat" model="ir.model.access">
+            <field name="name">Facture achat</field>
+            <field name="model_id" ref="model_gctjara_factureachat"/>
+            <field name="group_id" ref="gctjara_group_achats"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+        <record id="gctjara_access_ligne_facture_achat" model="ir.model.access">
+            <field name="name">Facture achat</field>
+            <field name="model_id" ref="model_gctjara_lignefactachat"/>
+            <field name="group_id" ref="gctjara_group_achats"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+        <record id="gctjara_access_regvente" model="ir.model.access">
+            <field name="name">Règlements ventes</field>
+            <field name="model_id" ref="model_gctjara_regvente"/>
+            <field name="group_id" ref="gctjara_group_ventes"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+
+        <record id="gctjara_access_regachat" model="ir.model.access">
+            <field name="name">Règlements achats</field>
+            <field name="model_id" ref="model_gctjara_regachat"/>
+            <field name="group_id" ref="gctjara_group_achats"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+
+          <record id="gctjara_access_bon_livraison" model="ir.model.access">
+            <field name="name">Bon Livrison</field>
+            <field name="model_id" ref="model_gctjara_bonlivraison"/>
+            <field name="group_id" ref="gctjara_group_ventes"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+         <record id="gctjara_access-ligne_bon_livraison" model="ir.model.access">
+            <field name="name">Ligne bon Livrison</field>
+            <field name="model_id" ref="model_gctjara_lignebonlivraison"/>
+            <field name="group_id" ref="gctjara_group_ventes"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+        <record id="gctjara_access_bon_entree" model="ir.model.access">
+            <field name="name">Bon entrée</field>
+            <field name="model_id" ref="model_gctjara_bonentree"/>
+            <field name="group_id" ref="gctjara_group_achats"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+
+        <record id="gctjara_access_produits" model="ir.model.access">
+            <field name="name">produit</field>
+            <field name="model_id" ref="model_gctjara_produits"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+         <record id="gctjara_access_emballage" model="ir.model.access">
+            <field name="name">Emballage</field>
+            <field name="model_id" ref="model_gctjara_emballage"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+         <record id="gctjara_access_produits_emballee" model="ir.model.access">
+            <field name="name">Produit emballée</field>
+            <field name="model_id" ref="model_gctjara_produitemballee"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+          <record id="gctjara_access_fournisseur" model="ir.model.access">
+            <field name="name">Fournisseur</field>
+            <field name="model_id" ref="model_gctjara_fournisseur"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+          <record id="gctjara_access_client" model="ir.model.access">
+            <field name="name">Client</field>
+            <field name="model_id" ref="model_gctjara_client"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+         <record id="gctjara_access_mouvement_stock" model="ir.model.access">
+            <field name="name">mouvement</field>
+            <field name="model_id" ref="model_gctjara_mvtstock"/>
+            <field eval="True" name="perm_read"/>
+            <field eval="True" name="perm_create"/>
+            <field eval="True" name="perm_write"/>
+            <field eval="True" name="perm_unlink"/>
+            <field eval="True" name="active"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+        <record id="mvtstock_form_view" model="ir.ui.view">
+            <field name="name">mvtstock.form</field>
+            <field name="model">gctjara.mvtstock</field>
+            <field name="arch" type="xml">
+                <form string="Mouvements de stock" create="false"> 
+                    <sheet>
+                        <group co="2">
+                        <group string="Général">
+                            <field name="numero"/>
+                            <field name="date"/>
+                            <field name="type"/>
+                        </group>
+                        <group String="Références">
+                            <field name="bonentree_id"  attrs="{'invisible': [('type','!=','Entrée'),]}"/>
+                            <field name="bonlivraison_id"  attrs="{'invisible': [('type','!=','Sortie'),]}"/>
+                            <field name="quantite"/>
+                            <field name="produit"/>
+                        </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="mvtstock_tree_view" model="ir.ui.view">
+            <field name="name">mvtstock.tree</field>
+            <field name="model">gctjara.mvtstock</field>
+            <field name="arch" type="xml">
+                <tree string="Mouvements de  stock"  default_order='date , bonentree_id, bonlivraison_id ,produit,type' create="false">
+                    <field name="numero"/>
+                    <field name="date"/>
+                    <field name="bonentree_id"/>
+                    <field name="bonlivraison_id" />
+                    <field name="quantite"/>
+                    <field name="produit"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+          <record model="ir.ui.view" id="mvtstock_search_view">
+            <field name="name">mvtstock.search</field>
+            <field name="model">gctjara.mvtstock</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="type" string="Type"
+                        domain="[('type', '!=', '')]" />
+                    <group string="Group By">
+                        <filter name="type" string="Type"
+                            context="{'group_by': 'type'}" />
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+
+
+        <record id="mvtstock_list_action" model="ir.actions.act_window">
+            <field name="name">Mouvements de stock </field>
+            <field name="res_model">gctjara.mvtstock</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

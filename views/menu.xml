@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <!-- TJARA Parent -->
+        <menuitem id="main_menue" name="GC-TJara"/>
+        
+        <!-- Achat -->
+        <menuitem id="achat_menu" name="Achats" parent="main_menue" sequence="1" groups="gctjara_group_achats"/>
+        <menuitem action="cmdfournisseur_list_action" id="commandefrs_menu" name="Commandes Fournisseurs" parent="achat_menu" sequence="2" groups="gctjara_group_achats"/>
+        <menuitem action="factureachat_list_action" id="factureachat_menu"  name="Factures Achats" parent="achat_menu" sequence="3" groups="gctjara_group_achats"/> 
+        <menuitem action="regachat_list_action" id="reglementachat_menu"   name="Règlements Achats" parent="achat_menu" sequence="4" groups="gctjara_group_achats"/>
+        <menuitem action="bonentree_list_action" id="Bonentree_menu"  name="Bons des entrées" parent="achat_menu" sequence="5"/>
+   
+        <!-- Vente -->
+        <menuitem id="vente_menu" name="Ventes" parent="main_menue" sequence="10" groups="gctjara_group_ventes" />
+        <menuitem action="cmdclient_list_action" id="commandeclts_menu" name="Commandes Clients" parent="vente_menu" sequence="11" groups="gctjara_group_ventes"  />
+        <menuitem action="bonlivraison_list_action"  id="bonlivraison_menu" name="Bons des livraisons"   parent="vente_menu" sequence="12"/>
+        <menuitem action="facturevente_list_action" id="facturevente_menu"  name="Factures Ventes" parent="vente_menu" sequence="13"/>
+        <menuitem action="regvente_list_action" id="reglementvente_menu"   name="Règlements Ventes" parent="vente_menu" sequence="14"/> 
+        
+      
+        <!-- Stock -->
+         <menuitem id="stcock_menu" name="Stock" parent="main_menue" sequence="20" groups="gctjara_group_achats" />
+      
+        <menuitem action="produits_list_action" id="produit_menu" name="Produits" parent="stcock_menu" sequence="21"/>
+        <menuitem action="produitemballee_list_action" id="produitembalee_menu" name="Produits Emballées" parent="produit_menu" sequence="22"/>
+        <menuitem action="emballage_list_action" id="emballage_menu" name="Emballages" parent="stcock_menu" sequence="23"/>
+        <menuitem action="mvtstock_list_action" id="mouvement_menu"  name="Mouvements des stocks" parent="stcock_menu" sequence="24"/>
+         
+        <!-- Partener -->
+        <menuitem id="partner_menu" name="Partenaires" parent="main_menue" sequence="30" groups="gctjara_group_admin"/>
+        <menuitem action="client_list_action" id="client_menu"  name="Clients" parent="partner_menu" sequence="31"/>
+        <menuitem action="fournisseur_list_action" id="fournisseur_menu"  name="Fournisseurs" parent="partner_menu" sequence="32"/>
+        <menuitem id="users_menu" name="Utilisateurs" parent="partner_menu" action="base.action_res_users" sequence="33" />
+        <!-- Dashboard -->
+         <menuitem id="dashboard_menu" name="Dashboard" parent="main_menue" sequence="40" />
+         <menuitem action="open_board_gctjara" id="tableaubord_menu"  name="Tableau de bord" parent="dashboard_menu" sequence="41"/>
+      
+         </data>
+</odoo>

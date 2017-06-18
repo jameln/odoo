@@ -1,0 +1,136 @@
+<odoo>
+    <data>
+        <record id="regachat_list_action" model="ir.actions.act_window">
+            <field name="name">Réglements d'achat</field>
+            <field name="res_model">gctjara.regachat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot,graph,gantt</field>
+            <field name="context"
+                   eval="{'search_default_filter': 1,'search_default_by_responsible': 1}"/>
+
+
+        </record>
+
+        <record id="regachat_form_view" model="ir.ui.view">
+            <field name="name">regachat.form</field>
+            <field name="model">gctjara.regachat</field>
+            <field name="arch" type="xml">
+                <form string="Règlement d'achat"  create="false">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"  >
+
+                            <button string="Rapproché" class="btn btn-primary" icon="fa-clock-o" 
+                                attrs="{'invisible': [('etatrapp','=','rp')]}"  name="Rapproche" type="object"
+                                 style="font-weight: bold; font-size: 16px;"                              
+                                confirm="Etes vous sûre de rapproché ce réglement?">
+                                 <br/>
+                               <span> après (</span><field name="duration"/> <span> ) jour(s)</span>
+
+                            </button>
+                        </div>
+                        <group col="3" class="header">
+                            <group string="Général">
+                                <field name="numero"/>
+                                <field name="date"/>
+                                <field name="datevaleur"/>
+                                <field name="dateoperation"/>
+                                <field name="dateecheance"/>
+                            </group>
+                            <group String="Opérations">
+
+                                <field name="prixttc"/>
+                            </group>
+
+                            <group string="Réglement">
+                                <field name="etatrapp" options="{'horizontal': true}" widget="radio"/>
+                                <field name="modepayment"/>
+                                <field name="facture_id" widget="many2many_tags"/>
+                                <field name="numerochq"
+                                       attrs="{'invisible': [('modepayment','!=','ch'),('modepayment','!=','tr')]}"/>
+
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page class="oe_page_Title" string="Description">
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+
+                            <page class="oe_page_Title" string="Upload Files">
+                                <sheet>
+                                    <group name="group_top">
+                                        <field name="upload_file" filename="file_name" widget="binary" height="64"/>
+                                        <field name="file_name" invisble="1"/>
+                                    </group>
+                                </sheet>
+                            </page>
+
+
+                        </notebook>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="regachat_tree_view" model="ir.ui.view">
+            <field name="name">regachat.tree</field>
+            <field name="model">gctjara.regachat</field>
+            <field name="arch" type="xml">
+                <tree string="Règlements d'achat"  decoration-warning="etatrapp == 'db'" decoration-info="etatrapp == 'vs'" decoration-success ="etatrapp == 'rp'"  create="false">
+                    <field name="numero"/>
+                    <field name="datevaleur"/>
+                    <field name="dateoperation"/>
+                    <field name="dateecheance"/>
+                    <field name="etatrapp"/>
+                    <field name="duration"/>
+                    <field name="prixttc"/>
+                    <field name="modepayment"/>
+                    <field name="create_uid"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="regachat_pivot_view" model="ir.ui.view">
+            <field name="name">regachat.pivot</field>
+            <field name="model">gctjara.regachat</field>
+            <field name="arch" type="xml">
+                <pivot string="Reglement achat Pivot" disable_linking="True">
+                    <field name="numero" type="col"/>
+                    <field name="datevaleur" interval="day" type="row"/>
+                    <field name="prixttc" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="regachat_graph_view" model="ir.ui.view">
+            <field name="name">regachat.graph</field>
+            <field name="model">gctjara.regachat</field>
+            <field name="arch" type="xml">
+                <graph string="Reg Par Forniseur">
+                    <field name="numero" group="True" stacked="True" type="row"/>
+                     <field name="etatrapp" group="True" stacked="True" type="col"/>
+                    <field name="prixttc" type="measure"/>
+                </graph>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="regachat_gantt_view">
+            <field name="name">regachat.gantt</field>
+            <field name="model">gctjara.regachat</field>
+            <field name="arch" type="xml">
+                <gantt string="Reg achat Gantt" color="etatrapp"
+                       date_start="date" date_delay="duration"
+                       default_group_by='modepayment' drag_resize='true'>
+                    <field name="numero"/>
+                </gantt>
+            </field>
+        </record>
+        
+    </data>
+</odoo>
+

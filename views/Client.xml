@@ -1,0 +1,184 @@
+<odoo>
+    <data>
+        <record id="client_list_action" model="ir.actions.act_window">
+            <field name="name">Client</field>
+            <field name="res_model">gctjara.client</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <!-- <field
+                eval="{'search_default_filter': 1,'search_default_by_responsible': 1}" name="context"/> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Créer votre première Client</p>
+            </field>
+        </record>
+        <record id="client_form_view" model="ir.ui.view">
+            <field name="name">client.form</field>
+            <field name="model">gctjara.client</field>
+            <field name="arch" type="xml">
+                <form string="Clients">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
+                                <field name="active" widget="boolean_button"
+                                       options="{&quot;terminology&quot;: &quot;active&quot;}"/>
+                            </button>
+                        </div>
+
+                        <group>
+                            <field class="oe_left oe_avatar"
+                                   name="image" widget="image"/>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page class="oe_page_Title" string="Informations générales">
+                                <group>
+                                    <field name="company_name"/>
+                                    <field name="email"/>
+                                    <field name="phone"/>
+                                    <field name="fax"/>
+                                    <field name="mobile"/>
+                                </group>
+                            </page>
+                            <page class="oe_page_Title" string="Coordonées">
+                                <group>
+                                    <field name="adresse"/>
+                                    <field name="street"/>
+                                    <field name="zip"/>
+                                    <field name="city"/>
+
+                                </group>
+                            </page>
+
+
+                            <page class="oe_page_Title" string="Commandes">
+                                <group>
+                                    <field name="commande_id">
+                                        <tree>
+                                            <field String="Numéro" name="numerocmdc"/>
+
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                              <page string="Identifiant" class="oe_page_Title">
+                                <group>
+                                    <field name="nature_reg_acceptee"/>
+                                    <field name="mode_reglement_autorisee"/>
+                                    <field name="type_de_relation"/>
+
+                                </group>
+                            </page>
+                            <page string="Détails" class="oe_read_only">
+                                <group>
+                                    <field name="create_uid"/>
+                                    <field name="create_date"/>
+                                    <field name="write_uid"/>
+                                    <field name="write_date"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+        <record id="client_tree_view" model="ir.ui.view">
+            <field name="name">client.tree</field>
+            <field name="model">gctjara.client</field>
+            <field name="arch" type="xml">
+                <tree string="Client">
+                    <field name="name"  widget="handle" />
+                    <field name="company_name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="mobile"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="client_kanban_view" model="ir.ui.view">
+            <field name="name">client.kanban</field>
+            <field name="model">gctjara.client</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <field name="image"/>
+
+                            </div>
+                        </t>
+
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <span>
+                                            <field name="name" widget="kanban_label_selection"/>
+                                            <br/>
+                                            <field name="company_name" widget="kanban_label_selection"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-xs-6">
+                                        <span class="pull-right text-right">
+                                            <field name="phone" widget="kanban_label_selection"/>
+                                            <br/>
+                                            <field name="email" widget="kanban_label_selection"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('gctjara.client', 'image', record.id.value)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong>
+                                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <span>
+                                                        <field name="name" widget="kanban_label_selection"/>
+                                                        <br/>
+                                                        <field name="company_name" widget="kanban_label_selection"/>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </strong>
+
+                                    <div name="tags"/>
+                                    <ul>
+                                        <li>Phone :
+                                            <field name="phone"/>
+                                        </li>
+                                        <li>EMAIL:
+                                            <field name="email"/>
+                                        </li>
+                                    </ul>
+                                    <div name="tags"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

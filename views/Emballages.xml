@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record id="emballage_list_action" model="ir.actions.act_window">
+            <field name="name">Emballages</field>
+            <field name="res_model">gctjara.emballage</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+           
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Créer le première emballage</p>
+            </field>
+        </record>
+        <record id="emballage_form_view" model="ir.ui.view">
+            <field name="name">emballage.form</field>
+            <field name="model">gctjara.emballage</field>
+            <field name="arch" type="xml">
+                <form string="Emballage Form">
+                    <sheet>
+                        <group col="2">
+                        <group>
+                            <field name="name"/>
+                            <field name="type"/>
+                        </group>
+                            <group>
+                            <field name="poids"/>
+                            <field name ="unite"/>
+                         </group>
+                           
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="emballage_tree_view" model="ir.ui.view">
+            <field name="name">emballage.tree</field>
+            <field name="model">gctjara.emballage</field>
+            <field name="arch" type="xml">
+                <tree string="Emballages">
+                   <field name="name"/>
+                    <field name="type"/>
+                    <field name="poids"/>
+                    <field name ="unite"/>
+                 
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

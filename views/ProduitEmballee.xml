@@ -1,0 +1,143 @@
+<odoo>
+    <data>
+
+        <record id="produitemballee_form_view" model="ir.ui.view">
+            <field name="name">produitemballee.form</field>
+            <field name="model">gctjara.produitemballee</field>
+            <field name="arch" type="xml">
+                <form string="Produits Embalées Form" create="false">
+                    <sheet>
+                        <group col="2" class="header">
+                            <group string="Information">
+                                <field name="name"/>
+                                <field name="produit_id"/>
+                                <field name="emballage_id"/>
+                            </group>
+                            <group string="Données">
+                                <field name="quantitestocke"/>
+                                <field name="prixunit"/>
+                                <field name="prixvente"/>
+                            </group>
+                        </group>
+                        <notebook>
+                             <page string="Détails" class="oe_read_only">
+                                <group>
+                                    <field name="create_uid"/>
+                                    <field name="create_date"/>
+                                    <field name="write_uid"/>
+                                    <field name="write_date"/>
+                                </group>
+                            </page>
+                          <!--  <page class="oe_page_Title" string="Achats">
+                                <group>
+                                    <field name="lignecmd_id">
+                                        <tree>
+                                            <group>
+                                                <field name="name"/>
+                                            </group>
+                                        </tree>
+
+                                    </field>
+                                </group>
+                            </page>
+                            <page class="oe_page_Title" string="Ventes">
+                                <group>
+                                    <field name="lignecmdvente_id">
+                                        <tree>
+                                            <group>
+                                                <field name="name"/>
+                                            </group>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>-->
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="produitembalee_tree_view" model="ir.ui.view">
+            <field name="name">produitemballee.tree</field>
+            <field name="model">gctjara.produitemballee</field>
+            <field name="arch" type="xml">
+                <tree string="Poduits embalées" default_order='name , produit_id, emballage_id' create="false">
+                    <field name="name"/>
+                    <field name="quantitestocke"/>
+                    <field name="produit_id"/>
+                    <field name="emballage_id"/>
+                    <field name="prixunit"/>
+                    <field name="prixvente"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="produitemballee_graph_view" model="ir.ui.view">
+            <field name="name">produitemballee.graph</field>
+            <field name="model">gctjara.produitemballee</field>
+            <field name="arch" type="xml">
+                <graph string="Qte Par Produit" create="false">
+                    <field name="produit_id" group="True" stacked="True" type="row"/>
+                    <field name="emballage_id" group="True" stacked="True" type="col"/>
+                    <field name="quantitestocke" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="produitemballee_kanban_view">
+            <field name="name">produitemballee.kanban</field>
+            <field name="model">gctjara.produitemballee</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" create="false">
+                    <field name="name"/>
+                    <field name="quantitestocke"/>
+                    <field name="produit_id"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <strong>
+                                            <i>PA :</i>
+                                            <span>
+                                                <field name="prixunit" widget="kanban_label_selection"/>
+                                            </span>
+                                            <br/>
+                                            <i>PV :</i>
+                                            <span>
+                                                <field name="prixvente" widget="kanban_label_selection"/>
+                                            </span>
+                                        </strong>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 text-muted">
+                                        <span>
+                                            <t t-esc="record.name.value"/>
+                                        </span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="pull-right text-right">
+                                            <field name="emballage_id" widget="kanban_label_selection"/>
+                                            <br/>
+                                            <i>Stock :</i>
+                                            <field name="quantitestocke" widget="kanban_label_selection"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="produitemballee_list_action" model="ir.actions.act_window">
+            <field name="name">Produits Embalées</field>
+            <field name="res_model">gctjara.produitemballee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,graph</field>
+        </record>
+    </data>
+</odoo>

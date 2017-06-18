@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+.header {
+    border: 2px dotted black;
+    padding: 35px;
+    background: #F7F7F0;
+    border-radius: 10px;
+}
+
+.openerp .oe_margin_top_4 {
+    margin-top: 4px;
+}
+
+[data-field="name"]
+{
+    color : blue;
+    font-family: Bold;
+}
+ 
+[data-field="numerocmdc"]
+{
+    color : blue;
+    font-family: Bold;
+}
+ 
+[data-field="numero"]
+{
+    color : blue;
+    font-family: Bold;
+}
+

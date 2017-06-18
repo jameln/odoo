@@ -1,0 +1,90 @@
+<odoo>
+    <data>
+        <record id="produits_list_action" model="ir.actions.act_window">
+            <field name="name">Produits</field>
+            <field name="res_model">gctjara.produits</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Créer votre première produits</p>
+            </field>
+        </record>
+        <record id="produits_form_view" model="ir.ui.view">
+            <field name="name">produits.form</field>
+            <field name="model">gctjara.produits</field>
+            <field name="arch" type="xml">
+                <form string="Produits Form">
+                    <!-- <header string="Facture">
+
+                            <button class="oe_highlight" name="create_produitemballee" attrs="{'invisible':[('states','=','enable')]}"
+                                string="Ajouter Prouit emballée" type="object"  />
+
+                        </header> -->
+                    <sheet>
+                        <group col="2" class="header">
+                            <group String="Produits">
+                                <field name="name"/>
+                                <field name="code"/>
+                                <!--<field name="dateexpiration"/>-->
+                            </group>
+                            <group String="Prix">
+                                <field name="prixunit"/>
+                                <field name="prixvente"/>
+
+                            </group>
+                        </group>
+                        <!-- <group>
+                           <field name="states" attrs="{'invisible':[('states','!=','')]}"/>
+                        </group> -->
+
+
+                        <notebook>
+
+                            <page class="oe_page_Title" string="Emballages">
+                                <group>
+                                    <field name="produitemballee_ids">
+                                        <tree>
+                                            <field String="Emballage" name="emballage_id">
+                                                <group>
+                                                    <field name="name"/>
+
+                                                </group>
+                                            </field>
+                                        </tree>
+                                        <form>
+                                            <field String="Emballage" name="emballage_id">
+                                                <group>
+                                                    <field name="name"/>
+                                                </group>
+                                            </field>
+
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                            <page class="oe_page_Title" string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="produits_tree_view" model="ir.ui.view">
+            <field name="name">produits.tree</field>
+            <field name="model">gctjara.produits</field>
+            <field name="arch" type="xml">
+                <tree string="Poduits">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <!--<field name="dateexpiration"/>-->
+                    <field name="prixunit"/>
+                    <field name="prixvente"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

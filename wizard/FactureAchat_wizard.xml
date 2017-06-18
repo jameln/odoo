@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <act_window id="action_group1"
+                    key2="client_action_multi"
+                    name="Paiement"
+                    res_model="gctjara.factureachatregle"
+                    src_model="gctjara.factureachat"
+                    target="new"
+                    view_mode="form"
+        />
+
+        <record id="factureachatregle_form_view" model="ir.ui.view">
+            <field name="name">factureachatregle.form</field>
+            <field name="model">gctjara.factureachatregle</field>
+            <field name="arch" type="xml">
+                <form string="Paiement facture achat">
+
+                    <group col="2">
+                        <group>
+                            <field name="datevaleur"/>
+                            <field name="dateoperation"/>
+                            <field name="dateecheance"/>
+                        </group>
+                        <group>
+                            <field name="modepayment"/>
+                            <field name="etatrapp" options="{'vertical': true}" widget="radio"/>
+                            <field name="numerochq"
+                                   attrs="{'invisible': [('modepayment','!=','ch'),('modepayment','!=','tr')]}"/>
+
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button class="oe_highlight" name="Paiement"
+                                string="Crée règlement" type="object"/>
+                        <button class="oe_link" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_group2"
+                    key2="client_action_multi"
+                    name="Paiement défalquée"
+                    res_model="gctjara.defalquerfactureachat"
+                    src_model="gctjara.factureachat"
+                    target="new"
+                    view_mode="form"
+        />
+        <record id="defalquerfactureachat_form_view" model="ir.ui.view">
+            <field name="name">defalquerfactureachat.form</field>
+            <field name="model">gctjara.defalquerfactureachat</field>
+            <field name="arch" type="xml">
+                <form string="Paiement facture achat défalquée ">
+
+                    <group>
+
+                        <field name="defalquer_facture" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="montant_tranche"/>
+                                <field name="datevaleur"/>
+                                <field name="dateoperation"/>
+                                <field name="dateecheance"/>
+                                <field name="modepayment"/>
+                                <field name="etatrapp"/>
+                                <field name="numerochq"  attrs="{'readonly': [('modepayment','!=','ch'),('modepayment','!=','tr')]}"/>
+
+                            </tree>
+                        </field>
+
+                    </group>
+
+                    <footer>
+                        <button class="oe_highlight" name="Defalquer_facture"
+                                string="Crée règlement" type="object"/>
+                        <button class="oe_link" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+           <act_window id="action_group3"
+                    key2="client_action_multi"
+                    name="Paiement regroupée"
+                    res_model="gctjara.regroupefactureachat"
+                    src_model="gctjara.factureachat"
+                    target="new"
+                    view_mode="form"
+        />
+
+        <record id="regroupefactureachat_form_view" model="ir.ui.view">
+            <field name="name">regroupefactureachat.form</field>
+            <field name="model">gctjara.regroupefactureachat</field>
+            <field name="arch" type="xml">
+                <form string="Paiement facture achat">
+
+                    <group col="2">
+                        <group>
+                            <field name="datevaleur"/>
+                            <field name="dateoperation"/>
+                            <field name="dateecheance"/>
+                        </group>
+                        <group>
+                            <field name="modepayment"/>
+                            <field name="etatrapp" options="{'vertical': true}" widget="radio"/>
+                            <field name="numerochq"
+                                   attrs="{'invisible': [('modepayment','!=','ch'),('modepayment','!=','tr')]}"/>
+
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button class="oe_highlight" name="Paiement_Regroupee"
+                                string="Crée règlement" type="object"/>
+                        <button class="oe_link" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

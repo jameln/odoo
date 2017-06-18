@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="bonentree_list_action" model="ir.actions.act_window">
+            <field name="name">Bon d'entrée</field>
+            <field name="res_model">gctjara.bonentree</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,search,calendar</field>
+            <field name="context"
+                   eval="{'search_default_filter': 1,'search_default_by_responsible': 1}"/>
+
+
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Créer le première Bon d'entrée</p>
+            </field>
+        </record>
+
+        <record id="bonentree_form_view" model="ir.ui.view">
+            <field name="name">bonentree.form</field>
+            <field name="model">gctjara.bonentree</field>
+            <field name="arch" type="xml">
+                <form string="Bons des entrées Form" create="false">
+                    <header string="Bon d'entrée">
+
+                        <button class="oe_highlight"
+                                name="cmd_livree" states="nr"
+                                string="Commande livrée" type="object"
+                                attrs="{'invisible': [('state','!=','nr'),]}"
+                                confirm="Cette commande ne serait pas entrée dans le stock, elle sera livrée au client."/>
+                        <button class="oe_highlight"
+                                name="creat_mvtstock" states="nr"
+                                string="Entrée au stock" type="object"
+                                attrs="{'invisible': [('state','!=','nr'),]}"/>
+
+                        <field name="state"
+                               statusbar_colors="{'nr':'white','rc':'blue','lv':'green'}"
+                               statusbar_visible="nr,rc,lv" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group col="2" class="header">
+
+                            <group>
+                                <field name="numero"/>
+                                <field name="date"/>
+                            </group>
+                            <group>
+                                <field name="commande_id"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page class="oe_page_Title" string="Produits">
+                                <group>
+                                    <field name="lignebonentree_id" nolabel="1">
+                                        <tree>
+                                            <field name="embalageproduit_id"  options='{"no_create":1,"no_create_edit":1}'/>
+                                            <field name="quantite"/>
+                                            <field name="quantitetot" />
+                                            <field name="prixunit"/>
+                                            <field name="prix_ht"/>
+                                            <field name="tva"/>
+                                            <field name="remise"/>
+                                            <field name="prix_total"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name="embalageproduit_id"/>
+                                            </group>
+                                        </form>
+
+                                    </field>
+                                </group>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="bonentree_tree_view" model="ir.ui.view">
+            <field name="name">bonentree.tree</field>
+            <field name="model">gctjara.bonentree</field>
+            <field name="arch" type="xml">
+                <tree string="Bon d'entrée" create="false" decoration-warning="state == 'nr'" decoration-muted="state == 'lv'">
+                    <field name="numero"/>
+                    <field name="date"/>
+                    <field name="lignebonentree_id"/>
+                    <field name="fournisseur_id"/>
+                    <field name="state"/>
+                    <field name="create_uid"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bonentree_search_view">
+            <field name="name">bonentree.search</field>
+            <field name="model">gctjara.bonentree</field>
+            <field name="arch" type="xml">
+                <search string="Bon d'entrée Search">
+                    <field name="numero"/>
+                    <field name="date"/>
+                    <field name="create_uid"/>
+                    <field name="commande_id"/>
+                    <filter name="filter" string="States" domain="[('create_uid', '=', uid)]"/>
+                    <group string="Group By">
+                        <filter name="by_state" string="State"
+                                context="{'group_by': 'state'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="bonentree_calendar_view">
+            <field name="name">bonentree.calendar</field>
+            <field name="model">gctjara.bonentree</field>
+            <field name="arch" type="xml">
+                <calendar string="Calendier BE" date_start="date" color="commande_id">
+                    <field name="numero"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- WorkFlow-->
+        <record id="bonentree_workflow" model="workflow">
+            <field name="name">gctjara.workflow_validation_bon_entree</field>
+            <field name="osv">gctjara.bonentree</field>
+            <field name="on_create">True</field>
+        </record>
+        <record id="activity_depart" model="workflow.activity">
+            <field name="wkf_id" ref="bonentree_workflow"/>
+            <field name="flow_start">True</field>
+            <field name="name">non reçu</field>
+            <field name="kind">function</field>
+            <field name="action">action_draft()</field>
+        </record>
+        <record id="activity_valide" model="workflow.activity">
+            <field name="wkf_id" ref="bonentree_workflow"/>
+            <field name="name">reçu</field>
+            <field name="kind">function</field>
+            <field name="action">creat_mvtstock()</field>
+        </record>
+        <record id="activity_livree" model="workflow.activity">
+            <field name="wkf_id" ref="bonentree_workflow"/>
+            <field name="flow_stop">True</field>
+            <field name="name">livrée</field>
+            <field name="kind">function</field>
+            <field name="action">cmd_livree()</field>
+        </record>
+
+        <record id="trans_rc" model="workflow.transition">
+            <field name="act_from" ref="activity_depart"/>
+            <field name="act_to" ref="activity_valide"/>
+            <field name="signal">creat_mvtstock</field>
+        </record>
+        <record id="trans_lv" model="workflow.transition">
+            <field name="act_from" ref="activity_depart"/>
+            <field name="act_to" ref="activity_livree"/>
+            <field name="signal">cmd_livree</field>
+        </record>
+
+        <!--end workflow -->
+    </data>
+</odoo>
