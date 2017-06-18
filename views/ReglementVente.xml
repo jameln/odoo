@@ -40,7 +40,12 @@
                             </group>
                             <group String="Opérations">
 
-                                <field name="prixttc"/>
+                                <field name="prixttc" 
+                                 style="font-weight: bold;
+                                  font-size: 32px;color : #D9123A ;
+                                  border:solid 0px;border-radius: 5px;
+                                  background-color: #FDFFFE ;
+                                  border-color:#A3D9F4"/>
                             </group>
 
                             <group String="Réglement">
