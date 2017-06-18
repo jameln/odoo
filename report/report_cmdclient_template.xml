@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <report file="gctjara.report_cmdclient" id="cmdclient_report"
-            model="gctjara.cmdclient" name="gc-tjara.report_cmdclient"
+            model="gctjara.cmdclient" name="GC-TJARA.report_cmdclient"
             report_type="qweb-pdf" string="Commande client"/>
         <template id="report_cmdclient">
             <t t-call="report.html_container">

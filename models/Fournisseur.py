@@ -113,7 +113,7 @@ class Fournisseur(models.Model):
     ]
 )
      necessite_fournisseur = fields.Selection(
-    string='Type de relation',
+    string='Neccessite fournisseur',
     default='',
     selection=[
         ('Intense', 'Prioritaire'),

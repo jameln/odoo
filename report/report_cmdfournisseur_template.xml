@@ -2,7 +2,7 @@
 <odoo>
     <data>
          <report file="gctjara.report_cmdfournisseur" id="cmdfournisseur_report"
-            model="gctjara.cmdfournisseur" name="gc-tjara.report_cmdfournisseur"
+            model="gctjara.cmdfournisseur" name="GC-TJARA.report_cmdfournisseur"
             report_type="qweb-pdf" string="Commande achat"/>
         <template id="report_cmdfournisseur">
             <t t-call="report.html_container">

@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <report file="gctjara.report_facturevente" id="facturevente_report"
-                model="gctjara.facturevente" name="gc-tjara.report_facturevente"
+                model="gctjara.facturevente" name="GC-TJARA.report_facturevente"
                 report_type="qweb-pdf" string="Factures de vente"/>
 
         <template id="report_facturevente">

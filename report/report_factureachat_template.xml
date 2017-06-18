@@ -2,8 +2,8 @@
 <odoo>
     <data>
          <report file="gctjara.report_factureachat" id="factureachat_report"
-            model="gctjara.factureachat" name="gc-tjara.report_factureachat"
-            report_type="qweb-pdf" string="Factures"/>
+            model="gctjara.factureachat" name="GC-TJARA.report_factureachat"
+            report_type="qweb-pdf" string="Facture Achat"/>
 
         <template id="report_factureachat">
             <t t-call="report.html_container">

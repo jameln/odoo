@@ -2,7 +2,7 @@
 <odoo>
     <data>
          <report file="gctjara.report_bonlivraison" id="bonlivraison_report"
-            model="gctjara.bonlivraison" name="gc-tjara.report_bonlivraison"
+            model="gctjara.bonlivraison" name="GC-TJARA.report_bonlivraison"
             report_type="qweb-pdf" string="Bon de livraison"/>
 
         <template id="report_bonlivraison">
