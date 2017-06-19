@@ -4,20 +4,21 @@
             <field name="name">mvtstock.form</field>
             <field name="model">gctjara.mvtstock</field>
             <field name="arch" type="xml">
-                <form string="Mouvements de stock" create="false"> 
+                <form string="Mouvements de stock" edit="false" create="false"> 
                     <sheet>
-                        <group co="2">
-                        <group string="Général">
-                            <field name="numero"/>
-                            <field name="date"/>
-                            <field name="type"/>
-                        </group>
-                        <group String="Références">
-                            <field name="bonentree_id"  attrs="{'invisible': [('type','!=','Entrée'),]}"/>
-                            <field name="bonlivraison_id"  attrs="{'invisible': [('type','!=','Sortie'),]}"/>
-                            <field name="quantite"/>
-                            <field name="produit"/>
-                        </group>
+                        <group col="2" >
+                            <group string="Général">
+                                <field name="numero"/>
+                                <field name="date"/>
+                                <field name="type"/>
+                            </group>
+                            <group String="Références">
+                                <field name="bonentree_id"  attrs="{'invisible': [('type','!=','Entrée'),]}"/>
+                                <field name="bonlivraison_id"  attrs="{'invisible': [('type','!=','Sortie'),]}"/>
+                                <field name="quantite"/>
+                                <field name="quantitetot" />
+                                <field name="produit"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
@@ -27,12 +28,13 @@
             <field name="name">mvtstock.tree</field>
             <field name="model">gctjara.mvtstock</field>
             <field name="arch" type="xml">
-                <tree string="Mouvements de  stock"  default_order='date , bonentree_id, bonlivraison_id ,produit,type' create="false">
+                <tree string="Mouvements de  stock"  default_order='date , bonentree_id, bonlivraison_id ,produit,type' edit="false" create="false">
                     <field name="numero"/>
                     <field name="date"/>
                     <field name="bonentree_id"/>
                     <field name="bonlivraison_id" />
                     <field name="quantite"/>
+                    <field name="quantitetot" />
                     <field name="produit"/>
                     <field name="type"/>
                 </tree>

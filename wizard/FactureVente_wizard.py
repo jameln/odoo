@@ -52,6 +52,9 @@ class FactureVenteTemp(models.TransientModel):
             if (factures.etatreglement == u"Réglée"):
                 raise ValidationError('La facture numéro  ' + str(factures.numero) + ' est déja réglée')
                 return False
+            if (factures.numero == u"Annulée"):
+                raise ValidationError('Impossible de paiée cette facture , elle est annulée')
+                return False
 
             record = self.env['gctjara.regvente'].create({
                 'numero': self.env['ir.sequence'].next_by_code('gctjara.regvente.seq'),
@@ -88,6 +91,9 @@ class DefalquerFactureVente(models.TransientModel):
             records = self.env['gctjara.facturevente'].search([('id', '=', record_id)])
             if (records.etatreglement == u"Réglée"):
                 raise ValidationError('La facture numéro  ' + str(records.numero) + ' est déja réglée')
+                return False
+            if (records.numero == u"Annulée"):
+                raise ValidationError('Impossible de paiée cette facture , elle est annulée')
                 return False
 
             total_montant = 0.0
@@ -167,6 +173,9 @@ class RegrouperFactureVente(models.TransientModel):
 
             if (factures.etatreglement == u"Réglée"):
                 raise ValidationError('La facture numéro  ' + str(factures.numero) + ' est déja réglée')
+                return False
+            if (factures.numero == u"Annulée"):
+                raise ValidationError('Impossible de paiée cette facture , il y a une facture annuler')
                 return False
             somme_prixttc += factures.montantttc
             list_fac += (factures.id,)
