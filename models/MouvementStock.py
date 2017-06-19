@@ -18,8 +18,15 @@ class MouvementStock(models.Model):
         )
     
     quantite = fields.Integer(
-        string='Quantité'
+        string='Qte.'
         )
+      
+    quantitetot = fields.Float(
+         string='Qte. Tôt.',
+         digits=(16, 1),
+         default=0.0,
+         store=True
+     )
     
     produit = fields.Many2one(
         string='Produits',

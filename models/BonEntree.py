@@ -67,6 +67,7 @@ class BonEntree(models.Model):
                   'numero' :  sequencesmvt,
                   'date': fields.datetime.now().strftime('%m/%d/%Y %H:%M'),
                   'quantite':recmvt.quantite,
+                  'quantitetot': recmvt.quantitetot,
                   'produit':recmvt.embalageproduit_id.id,
                   'bonentree_id': self.id,
                   'type':'Entrée'

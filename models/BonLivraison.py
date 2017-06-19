@@ -87,10 +87,10 @@ class BonLivraison(models.Model):
 
      @api.multi 
      def create_factvente(self):
-       sequences = self.env['ir.sequence'].next_by_code('gctjara.facturevente.seq')
+      # sequences = self.env['ir.sequence'].next_by_code('gctjara.facturevente.seq')
        record = self.env['gctjara.facturevente'].create({
              
-             'numero' :  sequences,
+            # 'numero' :  sequences,
              'datefact': self.date,
              'client_id':self.client_id.id,
              'bonlivraison_id' : self.id,
@@ -184,7 +184,9 @@ class BonLivraison(models.Model):
                  raise ValidationError('Impossible d\'annuler cette commande')
                  return False
              else :
-                 fact_id.montantttc=0
+                 
+                 fact_id.description="Cette facture numero "+str(fact_id.numero)+" a été annulée a partir du BLs numero "+ str(self.numero)+" le "+fields.datetime.now().strftime('%m/%d/%Y %H:%M')+" par " + str(self.env.user.name)
+                 fact_id.numero='Annulée'
              
              
          return True

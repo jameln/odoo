@@ -33,7 +33,7 @@
                                 name="annulation_bls" states="lv"
                                 string="Annuler le BLs" type="object"
                                 attrs="{'invisible': [('state','!=','lv'),]}"
-                                confirm="L'annulation du bon de livraison crée un mouvement de stock."/>
+                                confirm="L'annulation du bon de livraison puise l'annulation du commande et l'annulation du facture."/>
 
 
                         <field name="state"

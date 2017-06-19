@@ -117,7 +117,8 @@
             <field name="name">facturevente.tree</field>
             <field name="model">gctjara.facturevente</field>
             <field name="arch" type="xml">
-                <tree string="Factures " delete="false" decoration-info="etatreglement == 'false'" decoration-success="etatreglement == 'Réglée'">
+                <tree string="Factures " delete="false"   decoration-muted="numero == 'Annulée'" 
+                decoration-info="etatreglement == 'false'" decoration-success="etatreglement == 'Réglée'">
                     <field name="numero"/>
                     <field name="datefact"/>
                     <field name="client_id"/>
