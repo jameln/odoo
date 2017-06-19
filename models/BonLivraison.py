@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from docutils.nodes import field
 
 
 class BonLivraison(models.Model):
@@ -63,7 +64,14 @@ class BonLivraison(models.Model):
          comodel_name='gctjara.cmdclient',
           
      )
-
+     
+     facture_id = fields.Many2one(
+         string='Facture',
+         index=True,
+         comodel_name='gctjara.facturevente',
+          
+     )
+  
      @api.multi
      def action_attente(self):
          self.state = 'at'
@@ -89,8 +97,11 @@ class BonLivraison(models.Model):
 
  
            })
-
+      
        for rec in self:
+           #rec.write({'facture_id': [(4, record.id, False)]})
+           rec.facture_id=record.id
+           
            for rlf in rec.lignebonlivraison_id :
                self.state = 'lv'
 #                rlf.bonlivraison_id = record.id
@@ -164,7 +175,17 @@ class BonLivraison(models.Model):
                  product_id = rbl.embalageproduit_id.id
                  package_product = product.browse(product_id)
                  package_product.quantitestocke = qteprod
+                 
              rec.write({'state': 'an'})
+             reffact=self.env['gctjara.facturevente']
+             reffact_id=rec.facture_id.id
+             fact_id=reffact.browse(reffact_id)
+             if fact_id.etatreglement == u'Réglée' :
+                 raise ValidationError('Impossible d\'annuler cette commande')
+                 return False
+             else :
+                 fact_id.montantttc=0
+             
              
          return True
 
