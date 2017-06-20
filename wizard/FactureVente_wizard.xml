@@ -75,7 +75,7 @@
 
                     <footer>
                         <button class="oe_highlight" name="Defalquer_facture"
-                                string="Crée règlement" type="object"/>
+                                string="Crée règlement " type="object"/>
                         <button class="oe_link" special="cancel" string="Cancel"/>
                     </footer>
                 </form>

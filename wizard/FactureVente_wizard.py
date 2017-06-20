@@ -42,7 +42,7 @@ class FactureVenteTemp(models.TransientModel):
         store=True
     )
     numerochq = fields.Char(string='Numero')
-    defalquer_facture = fields.Many2one(comodel_name='gctjara.defalquerfactureachat')
+    defalquer_facture = fields.Many2one(comodel_name='gctjara.defalquerfacturevente')
 
     @api.multi
     def Paiement(self):
