@@ -17,7 +17,10 @@ class LigneProduitEmballage(models.Model):
     def _compute_name(self):
         for r in self:
             if(isinstance(r.produit_id.name , unicode)) and isinstance(r.emballage_id.name,unicode)and isinstance(r.emballage_id.unite,unicode):
-                r.name= r.produit_id.name + " "+ (r.emballage_id.name).strip()+" "+r.emballage_id.unite
+                if r.emballage_id.unite == u'Piece':
+                    r.name= r.produit_id.name 
+                else :
+                    r.name= r.produit_id.name + " "+ (r.emballage_id.name).strip()+" "+r.emballage_id.unite
                
    
     @api.one     

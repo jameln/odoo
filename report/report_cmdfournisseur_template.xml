@@ -22,6 +22,9 @@
                                     Fournisseur :
                                     <span t-field="o.fournisseur_id"/>
                                     <br/>
+                                    Matricule :
+                                    <span t-field="o.fournisseur_id.matriculefiscal"/>
+                                    <br/>
                                 </p>
                             </div>
 
