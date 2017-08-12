@@ -27,12 +27,12 @@
         <menuitem action="mvtstock_list_action" id="mouvement_menu"  name="Mouvements des stocks" parent="stcock_menu" sequence="24"/>
          
         <!-- Partener -->
-        <menuitem id="partner_menu" name="Partenaires" parent="main_menue" sequence="30" groups="gctjara_group_admin"/>
-        <menuitem action="client_list_action" id="client_menu"  name="Clients" parent="partner_menu" sequence="31"/>
-        <menuitem action="fournisseur_list_action" id="fournisseur_menu"  name="Fournisseurs" parent="partner_menu" sequence="32"/>
-        <menuitem id="users_menu" name="Utilisateurs" parent="partner_menu" action="base.action_res_users" sequence="33" />
+        <menuitem id="partner_menu" name="Partenaires" parent="main_menue" sequence="30"  />
+        <menuitem action="client_list_action" id="client_menu"  name="Clients" parent="partner_menu" sequence="31" groups="gctjara_group_ventes" />
+        <menuitem action="fournisseur_list_action" id="fournisseur_menu"  name="Fournisseurs" parent="partner_menu" sequence="32" groups="gctjara_group_achats"/>
+        <menuitem id="users_menu" name="Utilisateurs" parent="partner_menu" action="base.action_res_users" sequence="33"  groups="gctjara_group_admin"/>
         <!-- Dashboard -->
-         <menuitem id="dashboard_menu" name="Dashboard" parent="main_menue" sequence="40" />
+         <menuitem id="dashboard_menu" name="Dashboard" parent="main_menue" sequence="40" groups="gctjara_group_achats" />
          <menuitem action="open_board_gctjara" id="tableaubord_menu"  name="Tableau de bord" parent="dashboard_menu" sequence="41"/>
       
          </data>

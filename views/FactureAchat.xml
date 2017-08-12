@@ -17,12 +17,12 @@
             <field name="arch" type="xml">
                 <form string="Facture Form" create="false">
                     <sheet>
-                        <div class="oe_button_box" name="button_box"
+                        <!-- <div class="oe_button_box" name="button_box"
                              style="font-weight: bold; font-size: 16px;">
 
                             <span>Confirmé</span>
                             <field name="valid"/>
-                        </div>
+                        </div> -->
                         <group col="2" class="header">
                             <group>
                                 <field name="numero"/>

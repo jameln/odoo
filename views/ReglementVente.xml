@@ -17,18 +17,18 @@
             <field name="model">gctjara.regvente</field>
             <field name="arch" type="xml">
                 <form string="Règlement de vente"  create="false">
-                    <sheet>
-                       <div class="oe_button_box" name="button_box"  >
-
-                            <button string="Rapproché" class="btn btn-primary" icon="fa-clock-o" 
+                    <header >
+                        
+                            <button string="Rapproché" class="oe_highlight" icon="fa-clock-o" 
                                 attrs="{'invisible': [('etatrapp','=','rp')]}"  name="Rapproche" type="object"
-                                 style="font-weight: bold; font-size: 16px;"                              
+                                style="font-weight: bold; font-size: 16px;"                              
                                 confirm="Etes vous sûre de rapproché ce réglement?">
                                  <br/>
                                <span> après (</span><field name="duration"/> <span> ) jour(s)</span>
-
-                            </button>
-                        </div>
+                             </button>
+                    </header>
+                    <sheet>
+                      
                         <group col="3" class="header">
                             <group string="Général">
                                 <field name="numero"/>

@@ -42,7 +42,7 @@
 
                           <column>
                             <action name="%(produitemballee_graph_action)d" string="Produits embalées"/>
-                            <action name="%(regachat_graph_action)d" string="Réglement achat"/>
+                            <action name="%(regachat_graph_action)d" string="Réglement achat" />
                             <action name="%(regvente_graph_action)d" string="Réglement vente"/>
                         </column>
 

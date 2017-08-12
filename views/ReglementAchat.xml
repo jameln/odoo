@@ -16,18 +16,18 @@
             <field name="model">gctjara.regachat</field>
             <field name="arch" type="xml">
                 <form string="Règlement d'achat"  create="false">
-                    <sheet>
-                        <div class="oe_button_box" name="button_box"  >
-
-                            <button string="Rapproché" class="btn btn-primary" icon="fa-clock-o" 
-                                attrs="{'invisible': [('etatrapp','=','rp')]}"  name="Rapproche" type="object"
-                                 style="font-weight: bold; font-size: 16px;"                              
+                   <header >
+                            
+                            <button string="Rapproché" class="oe_highlight" icon="fa-clock-o" 
+                                attrs="{'invisible': [('etatrapp','=','rp')]}"  name="Rapproche" type="object"                             
                                 confirm="Etes vous sûre de rapproché ce réglement?">
                                  <br/>
                                <span> après (</span><field name="duration"/> <span> ) jour(s)</span>
-
                             </button>
-                        </div>
+                            
+                       </header>
+                    <sheet>
+
                         <group col="3" class="header">
                             <group string="Général">
                                 <field name="numero"/>
@@ -117,7 +117,7 @@
             <field name="name">regachat.graph</field>
             <field name="model">gctjara.regachat</field>
             <field name="arch" type="xml">
-                <graph string="Reg Par Forniseur">
+                <graph string="Reg Par Forniseur" type="pie">
                     <field name="numero" group="True" stacked="True" type="row"/>
                      <field name="etatrapp" group="True" stacked="True" type="col"/>
                     <field name="prixttc" type="measure"/>
