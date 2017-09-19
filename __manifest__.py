@@ -27,6 +27,7 @@
 
     # always loaded
     'data': [
+        
         'views/template.xml',
         'views/BonEntree.xml',
         'views/BonLivraison.xml',

@@ -26,10 +26,11 @@
                     </header>
                     <sheet>
 
-                          <div class="oe_button_box" name="button_box">
+                          <div class="oe_button_box" name="button_box" >
 
 
-                               <button name="toggle_valid" type="object" class="oe_stat_button oe_read_only" icon="fa-check" style="font-weight: bold; font-size: 16px;">
+                               <button name="toggle_valid" type="object" class="oe_stat_button oe_read_only" icon="fa-check" 
+                               style="font-weight: bold; font-size: 16px;" >
                                 <field name="valid_bool" widget="boolean_button" options='{"terminology": {
                                     "string_true": "Confirmé",
                                     "hover_true": "Non Confirmé",
@@ -150,9 +151,9 @@
                     <field name="state"/>
                     <field name="fournisseur_id"/>
                     <field name="create_uid"/>
-                    <filter name="filter" string="States" domain="[('state', '!=', 'an')]"/>
+                    <filter name="filter" string="Filtre non annulée" domain="[('state', '!=', 'an')]"/>
                     <group string="Group By">
-                        <filter name="by_state" string="States"
+                        <filter name="by_state" string="State non annulée"
                                 context="{'group_by': 'state'}"/>
                     </group>
 
