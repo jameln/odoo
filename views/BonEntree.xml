@@ -29,7 +29,7 @@
                                 attrs="{'invisible': [('state','!=','nr'),]}"
                                 confirm="Cette commande ne serait pas entrée dans le stock, elle sera livrée au client."/>
                         <button class="oe_highlight"
-                                name="creat_mvtstock" states="nr"
+                                name="creat_mvtstock" states="nr" 
                                 string="Entrée au stock" type="object"
                                 attrs="{'invisible': [('state','!=','nr'),]}"/>
 
@@ -103,9 +103,9 @@
                     <field name="date"/>
                     <field name="create_uid"/>
                     <field name="commande_id"/>
-                    <filter name="filter" string="States" domain="[('create_uid', '=', uid)]"/>
+                    <filter name="filter" string="Users" domain="[('create_uid', '=', uid)]"/>
                     <group string="Group By">
-                        <filter name="by_state" string="State"
+                        <filter name="by_state" string="Statut"
                                 context="{'group_by': 'state'}"/>
                     </group>
 
