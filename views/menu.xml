@@ -8,7 +8,8 @@
         <menuitem action="cmdfournisseur_list_action" id="commandefrs_menu" name="Commandes Fournisseurs" parent="achat_menu" sequence="2" groups="gctjara_group_achats"/>
         <menuitem action="factureachat_list_action" id="factureachat_menu"  name="Factures Achats" parent="achat_menu" sequence="3" groups="gctjara_group_achats"/> 
         <menuitem action="regachat_list_action" id="reglementachat_menu"   name="Règlements Achats" parent="achat_menu" sequence="4" groups="gctjara_group_achats"/>
-        <menuitem action="bonentree_list_action" id="Bonentree_menu"  name="Bons des entrées" parent="achat_menu" sequence="5"/>
+        <menuitem action="gctjara_notification_action" id="notif_reglementachat_menu"   name="Notification" parent="reglementachat_menu" sequence="5" groups="gctjara_group_achats"/>
+        <menuitem action="bonentree_list_action" id="Bonentree_menu"  name="Bons des entrées" parent="achat_menu" sequence="6"/>
    
         <!-- Vente -->
         <menuitem id="vente_menu" name="Ventes" parent="main_menue" sequence="10" groups="gctjara_group_ventes" />

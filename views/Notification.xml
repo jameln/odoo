@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="gctjara_notification_action" model="ir.actions.act_window">
+            <field name="name">Notification</field>
+            <field name="res_model">gctjara.notification</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p>Aucune alerte</p>
+            </field>
+        </record>
+
+        <record id='gctjara_notification_search_view' model='ir.ui.view'>
+            <field name="name">notification.search</field>
+            <field name="model">gctjara.notification</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="about"/>
+                    <field name="notification_level"/>
+                    <field name="regachat_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="gctjara_notification_tree_view" model="ir.ui.view">
+            <field name="name">notification.tree</field>
+            <field name="model">gctjara.notification</field>
+            <field name="arch" type="xml">
+                <tree string="Alertes" create="false" edit="false" delete="false" decoration-info="(gctjara_notification_level == 'info')" decoration-danger="(gctjara_notification_level == 'alert')" decoration-warning="(gctjara_notification_level == 'warning')">
+                    <field name="notification_date"/>
+                    <field name="notification_level"/>
+                    <field name="about"/>
+                    <field name="name"/>
+                    <field name="regachat_id"/>
+                    <button string="OK" type="object" name="unlink" icon="fa-check"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gctjara_notification_form_view" model="ir.ui.view">
+            <field name="name">notification.form</field>
+            <field name="model">gctjara.notification</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group>
+                            <field name="notification_date"/>
+                            <field name="notification_level"/>
+                            <field name="about"/>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="regachat_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+</data>
+</odoo>

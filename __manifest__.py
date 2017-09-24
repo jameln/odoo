@@ -38,6 +38,8 @@
         'views/FactureVente.xml',
         'views/ReglementAchat.xml',
         'views/ReglementVente.xml',
+        'views/Notification.xml',
+        'crons/cronreglement.xml',
         'views/Produits.xml',
         'views/Emballages.xml',
         'views/ProduitEmballee.xml',
