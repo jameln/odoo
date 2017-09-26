@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 import dateutil.parser
+from dateutil.relativedelta import relativedelta
 
 from datetime import datetime
 class ReglementAchat(models.Model):
@@ -116,35 +117,31 @@ class ReglementAchat(models.Model):
             name = u""
             description = u""
             reg = self.browse(reg_id.id)
+            date_now =datetime.now()
+            datech_reg = fields.Datetime.from_string(reg.dateecheance)
+            difference_duration = (datech_reg - date_now).days
 
-            date_now = dateutil.parser.parse(fields.datetime.now()).date() # datetime.strptime(reg.date, '%Y-%m-%d %H:%M:%S')
-            datech_reg = dateutil.parser.parse(reg.dateecheance).date() #datetime.strptime(reg.dateecheance, '%Y-%m-%d %H:%M:%S')
+            if difference_duration == 0 :
 
-            # date_now = fields.Datetime.from_string(fields.datetime.now())
-            # datech_reg= fields.Datetime.from_string(reg.dateecheance)
-            print " dddd***************************ddddd**************"
-            print ( date_now.days)
-            if date_now.days == datech_reg.days :
-                print "date egale"
-                # name = reg_id.numero
-                # description = u"jour de paiement le règelment"+str(reg_id.id)
-                # notification_level = u"info"
+                name = reg_id.numero
+                description = u"jour de paiement le règelment"+str(reg_id.id)
+                notification_level = "info"
 
-            elif (date_now - datech_reg).days == -1:
-                print "date inf"
-                # name = reg_id.numero
-                # description = u"il reste un jour pour le paiement du   règelment"+str(reg_id.id)
-                # notification_level = u"warning"
+            elif difference_duration == -1:
+
+                name = reg_id.numero
+                description = u"il reste un jour pour le paiement du   règelment"+str(reg_id.id)
+                notification_level = "warning"
             else :
                 print " else "
 
-            # self.env['gctjara.notification'].create({
-            #         'name': name,
-            #         'description': description,
-            #         'notification_level': notification_level,
-            #         'about': about,
-            #         'notification_date': fields.datetime.today(),
-            #         'regachat_id': reg_id.id
-            #     })
+            self.env['gctjara.notification'].create({
+                    'name': name,
+                    'description': description,
+                    'notification_level': notification_level ,
+                    'about': about,
+                    'notification_date': fields.datetime.today(),
+                    'regachat_id': reg_id.id
+                })
 
         return True
