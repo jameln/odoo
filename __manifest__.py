@@ -27,6 +27,7 @@
 
     # always loaded
     'data': [
+        'security/groups.xml',
         'views/template.xml',
         'views/BonEntree.xml',
         'views/BonLivraison.xml',

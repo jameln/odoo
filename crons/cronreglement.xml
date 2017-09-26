@@ -10,7 +10,7 @@
             <field name="numbercall">-1</field>
             <field name="doall" eval="False"/>
             <field name="model" eval="'gctjara.regachat'"/>
-            <field name="function" eval="'_cron_check_reglement_achat_expiration_date'"/>
+            <field name="function" eval="'_cron_check_reglement_achat_date'"/>
             <field name="args" eval="'()'" />
         </record>
 

@@ -234,7 +234,7 @@ class CommandeFournisseur(models.Model):
          record = self.env['gctjara.bonentree'].create({
 
              'numero': sequences,
-             'date': fields.datetime.now().strftime('%m/%d/%Y %H:%M'),
+             'date': fields.datetime.now().strftime('%d/%m/%Y %H:%M'),
              'fournisseur_id': self.fournisseur_id.id,
              'commande_id': self.id
 
