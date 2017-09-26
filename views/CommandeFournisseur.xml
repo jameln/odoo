@@ -152,7 +152,7 @@
                     <field name="create_uid"/>
                     <filter name="filter" string="States" domain="[('state', '!=', 'an')]"/>
                     <group string="Group By">
-                        <filter name="by_state" string="Non annulée"
+                        <filter name="by_state" string="States"
                                 context="{'group_by': 'state'}"/>
                     </group>
 

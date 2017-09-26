@@ -1,6 +1,10 @@
 <odoo>
     <data>
+<<<<<<< HEAD
           <record id="gctjara_group_ventes" model="res.groups">
+=======
+        <record id="gctjara_group_ventes" model="res.groups">
+>>>>>>> origin/master
             <field name="name">GC-TJARA / Ventes</field>
             <field name="comment">Commentaire sur le groupe facturation de vente</field>
             <field name="category_id" ref="base.module_category_administration"/>
@@ -10,13 +14,24 @@
             <field name="name">GC-TJARA / Achats</field>
             <field name="comment">Commentaire sur le groupe facturation d'achat</field>
             <field name="category_id" ref="base.module_category_administration"/>
+<<<<<<< HEAD
 
         </record>
 
+=======
+           
+        </record>
+        
+>>>>>>> origin/master
         <record id="gctjara_group_admin" model="res.groups">
             <field name="name">GC-TJARA/ Administrateurs</field>
             <field name="comment">Commentaire sur le groupe Administrateurs</field>
             <field name="category_id" ref="base.module_category_administration"/>
         </record>
+<<<<<<< HEAD
+=======
+
+        
+>>>>>>> origin/master
     </data>
 </odoo>

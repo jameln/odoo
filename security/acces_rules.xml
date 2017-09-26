@@ -1,6 +1,23 @@
 <odoo>
     <data>
+        <record id="gctjara_group_ventes" model="res.groups">
+            <field name="name">GC-TJARA / Ventes</field>
+            <field name="comment">Commentaire sur le groupe facturation de vente</field>
+            <field name="category_id" ref="base.module_category_administration"/>
+        </record>
 
+        <record id="gctjara_group_achats" model="res.groups">
+            <field name="name">GC-TJARA / Achats</field>
+            <field name="comment">Commentaire sur le groupe facturation d'achat</field>
+            <field name="category_id" ref="base.module_category_administration"/>
+           
+        </record>
+        
+        <record id="gctjara_group_admin" model="res.groups">
+            <field name="name">GC-TJARA/ Administrateurs</field>
+            <field name="comment">Commentaire sur le groupe Administrateurs</field>
+            <field name="category_id" ref="base.module_category_administration"/>
+        </record>
 
          <record id="gctjara_access_commande_achat" model="ir.model.access">
             <field name="name">Commande achat</field>
