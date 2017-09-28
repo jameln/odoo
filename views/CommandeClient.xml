@@ -17,7 +17,7 @@
                                 string="Annuler la commande" type="object"/>
 
                         <button class="oe_highlight" name="cmdclt_terminer" states="va"
-                                string="Marquer commande comme terminer" type="object"/>
+                                string="Marquer commande comme terminer" type="object" />
 
                         <field name="state"
                                statusbar_colors="{'br':'white','va':'blue','an':'red','tr':'green'}"
@@ -28,7 +28,9 @@
                           <div class="oe_button_box" name="button_box">
 
 
-                               <button name="toggle_valid" type="object" class="oe_stat_button oe_read_only" icon="fa-check" style="font-weight: bold; font-size: 16px;">
+                               <button name="toggle_valid" type="object" class="oe_stat_button oe_read_only"
+                                icon="fa-check" style="font-weight: bold; font-size: 16px;"
+                                 groups="GC-TJARA.gctjara_group_admin" >
                                 <field name="valid_bool" widget="boolean_button" options='{"terminology": {
                                     "string_true": "Confirmé",
                                     "hover_true": "Non Confirme",
