@@ -3,10 +3,9 @@
     'name': "GC-TJARA",
 
     'summary': """
-    Dans le cadre de PFE de Mr JAMEL NEFZI :
-         Solution pour la gestion de l'activité commerciale d'une entreprise (PME)
+             Solution pour la gestion de l'activité commerciale d'une entreprise (PME)
 
-""",
+     """,
 
     'description': """
         Application Gestion commercial T-JARA pour les PME 
@@ -27,6 +26,7 @@
 
     # always loaded
     'data': [
+        'security/groups.xml',
         'views/template.xml',
         'views/BonEntree.xml',
         'views/BonLivraison.xml',

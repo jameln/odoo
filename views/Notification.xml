@@ -2,11 +2,11 @@
 <odoo>
     <data>
 
-        <record id="gctjara_notification_action" model="ir.actions.act_window">
+        <record id="notification_reglement_list_action" model="ir.actions.act_window">
             <field name="name">Notification</field>
             <field name="res_model">gctjara.notification</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,search</field>
             <field name="help" type="html">
                 <p>Aucune alerte</p>
             </field>
@@ -21,6 +21,7 @@
                     <field name="about"/>
                     <field name="notification_level"/>
                     <field name="regachat_id"/>
+                    <field name="regvente_id" />
                 </search>
             </field>
         </record>
@@ -29,12 +30,14 @@
             <field name="name">notification.tree</field>
             <field name="model">gctjara.notification</field>
             <field name="arch" type="xml">
-                <tree string="Alertes" create="false" edit="false" delete="false" decoration-info="(gctjara_notification_level == 'info')" decoration-danger="(gctjara_notification_level == 'alert')" decoration-warning="(gctjara_notification_level == 'warning')">
+                <tree string="Alertes" create="false" edit="false" delete="false" decoration-info="notification_level == 'info'" decoration-danger="notification_level == 'alert'" decoration-warning="notification_level == 'warning'">
                     <field name="notification_date"/>
                     <field name="notification_level"/>
                     <field name="about"/>
                     <field name="name"/>
                     <field name="regachat_id"/>
+                    <field name="regvente_id" />
+
                     <button string="OK" type="object" name="unlink" icon="fa-check"/>
                 </tree>
             </field>
@@ -52,7 +55,8 @@
                             <field name="about"/>
                             <field name="name"/>
                             <field name="description"/>
-                            <field name="regachat_id"/>
+                            <field name="regachat_id" attrs="{'invisible': [('regachat_id','=','')]}"/>
+                            <field name="regvente_id" attrs="{'invisible': [('regvente_id','=','')]}" />
                         </group>
                     </sheet>
                 </form>

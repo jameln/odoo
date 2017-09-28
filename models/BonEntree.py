@@ -65,7 +65,7 @@ class BonEntree(models.Model):
             sequencesmvt =   self.env['ir.sequence'].next_by_code('gctjara.mvtstock.seq')
             self.env['gctjara.mvtstock'].create({
                   'numero' :  sequencesmvt,
-                  'date': fields.datetime.now().strftime('%m/%d/%Y %H:%M'),
+                  'date': fields.datetime.now().strftime('%d/%m/%Y %H:%M'),
                   'quantite':recmvt.quantite,
                   'quantitetot': recmvt.quantitetot,
                   'produit':recmvt.embalageproduit_id.id,

@@ -217,7 +217,7 @@ class CommandeClient(models.Model):
         record = self.env['gctjara.bonlivraison'].create({
             
               'numero' :  sequences,
-              'date':fields.datetime.now().strftime('%m/%d/%Y %H:%M'),
+              'date':fields.datetime.now().strftime('%d/%m/%Y %H:%M'),
               'client_id':self.client_id.id,
 
               'commande_id' :  self.id

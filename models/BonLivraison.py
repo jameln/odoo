@@ -126,7 +126,7 @@ class BonLivraison(models.Model):
                  sequencesmvt = self.env['ir.sequence'].next_by_code('gctjara.mvtstock.seq')
                  self.env['gctjara.mvtstock'].create({
                          'numero' :  sequencesmvt,
-                         'date': fields.datetime.now().strftime('%m/%d/%Y %H:%M'),
+                         'date': fields.datetime.now().strftime('%d/%m/%Y %H:%M'),
                          'quantite':rbl.quantite,
                          'quantitetot': rbl.quantitetot,
                          'produit':rbl.embalageproduit_id.id,
@@ -163,7 +163,7 @@ class BonLivraison(models.Model):
                  sequencesmvt = self.env['ir.sequence'].next_by_code('gctjara.mvtstock.seq')
                  self.env['gctjara.mvtstock'].create({
                          'numero' :  sequencesmvt,
-                         'date': fields.datetime.now().strftime('%m/%d/%Y %H:%M'),
+                         'date': fields.datetime.now().strftime('%d/%m/%Y %H:%M'),
                          'quantite':rbl.quantite,
                          'quantitetot': rbl.quantitetot,
                          'produit':rbl.embalageproduit_id.id,
@@ -185,7 +185,7 @@ class BonLivraison(models.Model):
                  return False
              else :
                  
-                 fact_id.description="Cette facture numero "+str(fact_id.numero)+" a été annulée a partir du BLs numero "+ str(self.numero)+" le "+fields.datetime.now().strftime('%m/%d/%Y %H:%M')+" par " + str(self.env.user.name)
+                 fact_id.description="Cette facture numero "+str(fact_id.numero)+" a été annulée a partir du BLs numero "+ str(self.numero)+" le "+fields.datetime.now().strftime('%d/%m/%Y %H:%M')+" par " + str(self.env.user.name)
                  fact_id.numero='Annulée'
              
              

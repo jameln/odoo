@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from datetime import datetime
+
+
 
 class ReglementVente(models.Model):
 
@@ -109,4 +112,52 @@ class ReglementVente(models.Model):
     upload_file=fields.Binary(string='Upload File')
     
     file_name=fields.Char(string='File Name')
+
+
+    def _cron_check_reglement_vente_date(self):
+
+        regvente_ids = self.search([])
+
+        about = 'regvente'
+        for reg_id in regvente_ids:
+            notification = False
+            name = u""
+            description = u""
+            reg = self.browse(reg_id.id)
+            date_now = datetime.now()
+            datech_reg = fields.Datetime.from_string(reg.daterecption)
+            difference_duration = (datech_reg - date_now).days
+
+            if difference_duration == 0:
+                print "il y a info"
+                valide=True
+                name = "Notification pour "+str(reg_id.numero)
+                description = "jour de paiement le règelment" + str(reg_id.id)
+                level = 'info'
+
+            elif difference_duration == -1:
+                print "il y a warning"
+                valide = True
+                name = "Notification pour "+str(reg_id.numero)
+                description = "il reste un jour pour le paiement du   règelment" + str(reg_id.id)
+                level = 'warning'
+            else:
+                valide = False
+                print "il n'y a pas d'écheance a payer"
+
+
+            if valide :
+                self.env['gctjara.notification'].create({
+                    'name': name,
+                    'description': description,
+                    'about': about,
+                    'notification_level':level,
+                    'notification_date': fields.datetime.today(),
+                    'regvente_id': reg_id.id
+                })
+
+
+
+        return True
+
 

@@ -179,7 +179,6 @@ class CommandeFournisseur(models.Model):
 
      @api.multi
      def afficher(self):
-        print "afficher()"
         raise ValidationError('id commande : ' + str(self.id))
         return True
 
@@ -234,12 +233,11 @@ class CommandeFournisseur(models.Model):
          record = self.env['gctjara.bonentree'].create({
 
              'numero': sequences,
-             'date': fields.datetime.now().strftime('%m/%d/%Y %H:%M'),
+             'date': fields.datetime.now().strftime('%d/%m/%Y %H:%M'),
              'fournisseur_id': self.fournisseur_id.id,
              'commande_id': self.id
 
          })
-         print ("Commmande id  =================>"+str(self.id))
 
          for rec in self:
              for r in rec.lignecmd_id:

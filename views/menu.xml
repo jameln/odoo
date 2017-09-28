@@ -2,13 +2,15 @@
     <data>
         <!-- TJARA Parent -->
         <menuitem id="main_menue" name="GC-TJara"/>
+
+        <menuitem action="notification_reglement_list_action" id="notif_reglement_menu"   name="Notification" parent="main_menue" sequence="1" groups="gctjara_group_achats"/>
+
         
         <!-- Achat -->
-        <menuitem id="achat_menu" name="Achats" parent="main_menue" sequence="1" groups="gctjara_group_achats"/>
-        <menuitem action="cmdfournisseur_list_action" id="commandefrs_menu" name="Commandes Fournisseurs" parent="achat_menu" sequence="2" groups="gctjara_group_achats"/>
-        <menuitem action="factureachat_list_action" id="factureachat_menu"  name="Factures Achats" parent="achat_menu" sequence="3" groups="gctjara_group_achats"/> 
-        <menuitem action="regachat_list_action" id="reglementachat_menu"   name="Règlements Achats" parent="achat_menu" sequence="4" groups="gctjara_group_achats"/>
-        <menuitem action="gctjara_notification_action" id="notif_reglementachat_menu"   name="Notification" parent="reglementachat_menu" sequence="5" groups="gctjara_group_achats"/>
+        <menuitem id="achat_menu" name="Achats" parent="main_menue" sequence="2" groups="gctjara_group_achats"/>
+        <menuitem action="cmdfournisseur_list_action" id="commandefrs_menu" name="Commandes Fournisseurs" parent="achat_menu" sequence="3" groups="gctjara_group_achats"/>
+        <menuitem action="factureachat_list_action" id="factureachat_menu"  name="Factures Achats" parent="achat_menu" sequence="4" groups="gctjara_group_achats"/>
+        <menuitem action="regachat_list_action" id="reglementachat_menu"   name="Règlements Achats" parent="achat_menu" sequence="5" groups="gctjara_group_achats"/>
         <menuitem action="bonentree_list_action" id="Bonentree_menu"  name="Bons des entrées" parent="achat_menu" sequence="6"/>
    
         <!-- Vente -->

@@ -9,7 +9,7 @@ class Notification(models.Model):
 
     name = fields.Char(string="Titre", required=True)
     notification_date = fields.Date(string="Date",default=fields.datetime.now(), required=True)
-    notification_level = fields.Selection(string="Niveau", selection=[
+    notification_level = fields.Selection(string="Level", selection=[
         ('info', 'Information'),
         ('warning', 'Avertissement'),
         ('alert', 'Alerte')
@@ -25,4 +25,10 @@ class Notification(models.Model):
         index=True,
         comodel_name="gctjara.regachat",
         string="Règlement"
-)
+    )
+    regvente_id = fields.Many2one(
+        required=True,
+        index=True,
+        comodel_name="gctjara.regvente",
+        string="Règlement"
+    )

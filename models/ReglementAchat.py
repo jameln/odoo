@@ -3,6 +3,7 @@
 from odoo import models, fields, api
 import dateutil.parser
 
+from datetime import datetime
 class ReglementAchat(models.Model):
 
     _name = 'gctjara.regachat'
@@ -104,65 +105,46 @@ class ReglementAchat(models.Model):
     
     file_name = fields.Char(string='File Name')
 
-    def _cron_check_reglement_achat_expiration_date(self):
-        print "reg achat cron in"
+    def _cron_check_reglement_achat_date(self):
+
         regachat_ids = self.search([])
-        print regachat_ids
-#         config = self.env['ostool.config'].search_read([], order='write_date DESC', limit=1)
-#         if not config:
-#             raise UserError("Configuration Introuvable")
-#         config = config[0]
-#         alert_period = config.get('alert_period')
-        # responsible_id = config.get('responsible_partner_id')
+
         about = 'regachat'
         for reg_id in regachat_ids:
             notification = False
             name = u""
             description = u""
-#             rapproche = self.env['gctjara.regachat'].search_read([('regachat_id', '=', reg_id.id)], ['expiration'], order='dateecheance DESC')
             reg = self.browse(reg_id.id)
-          
-            
-            date_reg =  dateutil.parser.parse(reg.date).date() # datetime.strptime(reg.date, '%Y-%m-%d %H:%M:%S')
-            datech_reg=  dateutil.parser.parse(reg.dateecheance).date() #datetime.strptime(reg.dateecheance, '%Y-%m-%d %H:%M:%S')
-            
-            if date_reg == datech_reg :
-                print " egale "
-            elif date_reg > datech_reg :
-                print  " inf "
-            else :
-                print " sup "
-                
-           
-                
-                
-            
-#             if rapproche:
-#                 expiration = rapproche[0].get('expiration')
-#                 if expiration <= 0:
-#                     notification = True
-#                     notification_type = 'notification'
-#                     name = u"Expiration"
-#                     description = u"Le contrat d'assurance du véhicule '" + v.name + u"' est expiré."
-#                 elif expiration <= alert_period:
-#                     notification = True
-#                     notification_type = 'warning'
-#                     name = u"Délais d'expiration proche"
-#                     description = u"Le contrat d'assurance du véhicule '" + v.name + u"' expire dans " + unicode(str(expiration), 'utf-8') + u" jour(s)."
-#             else:
-#                 notification = True
-#                 notification_type = 'info'
-#                 name = u"Risque"
-#                 description = u"Le véhicule '" + v.name + u"' ne possède aucun contrat d'assurance."
-#             if notification :
-#                 # print description
-#                 self.env['gctjara.notification'].create({
-#                     'name': name,
-#                     'description': description,
-#                     'notification_level': alert_type,
-#                     'about': about,
-#                     'notification_date': fields.datetime.today(),
-#                     'regachat_id': v.id
-#                 })
-        print "reg achat cron out"
+            date_now = datetime.now()
+            datech_reg = fields.Datetime.from_string(reg.dateecheance)
+            difference_duration = (datech_reg - date_now).days
+
+            if difference_duration == 0:
+                valide=True
+                name = "Notification pour "+str(reg_id.numero)
+                description = "jour de paiement le règelment" + str(reg_id.id)
+                level = 'info'
+
+            elif difference_duration == -1:
+                valide = True
+                name = "Notification pour "+str(reg_id.numero)
+                description = "il reste un jour pour le paiement du   règelment" + str(reg_id.id)
+                level = 'warning'
+            else:
+                valide = False
+                print "il n'y a pas d'écheance a payer"
+
+
+            if valide :
+                self.env['gctjara.notification'].create({
+                    'name': name,
+                    'description': description,
+                    'about': 'regachat',
+                    'notification_level':level,
+                    'notification_date': fields.datetime.today(),
+                    'regachat_id': reg_id.id
+                })
+
+
+
         return True
