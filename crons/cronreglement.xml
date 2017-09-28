@@ -21,7 +21,7 @@
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
             <field name="doall" eval="False"/>
-            <field name="model" eval="'gctjara.regavente'"/>
+            <field name="model" eval="'gctjara.regvente'"/>
             <field name="function" eval="'_cron_check_reglement_vente_date'"/>
             <field name="args" eval="'()'" />
         </record>

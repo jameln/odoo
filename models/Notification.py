@@ -20,15 +20,16 @@ class Notification(models.Model):
        
     ], required=True)
     description = fields.Text(string="Description")
+
     regachat_id = fields.Many2one(
         required=True,
         index=True,
         comodel_name="gctjara.regachat",
-        string="Règlement"
+        string="RA N°"
     )
     regvente_id = fields.Many2one(
         required=True,
         index=True,
         comodel_name="gctjara.regvente",
-        string="Règlement"
+        string="RV N°"
     )

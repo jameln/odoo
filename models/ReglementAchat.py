@@ -122,13 +122,13 @@ class ReglementAchat(models.Model):
             if difference_duration == 0:
                 valide=True
                 name = "Notification pour "+str(reg_id.numero)
-                description = "jour de paiement le règelment" + str(reg_id.id)
+                description = "jour de paiement le règelment" + str(reg_id.numero)
                 level = 'info'
 
             elif difference_duration == -1:
                 valide = True
                 name = "Notification pour "+str(reg_id.numero)
-                description = "il reste un jour pour le paiement du   règelment" + str(reg_id.id)
+                description = "il reste un jour pour le paiement du   règelment" + str(reg_id.numero)
                 level = 'warning'
             else:
                 valide = False

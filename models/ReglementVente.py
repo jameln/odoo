@@ -13,6 +13,8 @@ class ReglementVente(models.Model):
 
     _inherit = 'mail.thread'
 
+    _order = "daterecption desc"
+
     
     numero = fields.Char(
         string='Numero règlement',
@@ -119,31 +121,28 @@ class ReglementVente(models.Model):
         regvente_ids = self.search([])
 
         about = 'regvente'
-        for reg_id in regvente_ids:
+        for regvt_id in regvente_ids:
             notification = False
             name = u""
             description = u""
-            reg = self.browse(reg_id.id)
+            reg = self.browse(regvt_id.id)
             date_now = datetime.now()
             datech_reg = fields.Datetime.from_string(reg.daterecption)
             difference_duration = (datech_reg - date_now).days
 
             if difference_duration == 0:
-                print "il y a info"
                 valide=True
-                name = "Notification pour "+str(reg_id.numero)
-                description = "jour de paiement le règelment" + str(reg_id.id)
+                name = "Notification pour "+str(regvt_id.numero)
+                description = "jour de recevoir de le règelment " + str(regvt_id.numero)
                 level = 'info'
-
             elif difference_duration == -1:
-                print "il y a warning"
                 valide = True
-                name = "Notification pour "+str(reg_id.numero)
-                description = "il reste un jour pour le paiement du   règelment" + str(reg_id.id)
+                name = "Notification pour "+str(regvt_id.numero)
+                description = "il reste un jour pour la reception du   règelment" + str(regvt_id.numero)
                 level = 'warning'
             else:
                 valide = False
-                print "il n'y a pas d'écheance a payer"
+                print "il n'y a pas de règlement a récevoir a payer"
 
 
             if valide :
@@ -153,10 +152,8 @@ class ReglementVente(models.Model):
                     'about': about,
                     'notification_level':level,
                     'notification_date': fields.datetime.today(),
-                    'regvente_id': reg_id.id
+                    'regvente_id': regvt_id.id
                 })
-
-
 
         return True
 
