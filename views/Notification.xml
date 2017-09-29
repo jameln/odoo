@@ -20,8 +20,7 @@
                     <field name="name"/>
                     <field name="about"/>
                     <field name="notification_level"/>
-                    <field name="regachat_id"/>
-                    <field name="regvente_id" />
+                    <!--<field name="reglement_ref"  />-->
                 </search>
             </field>
         </record>
@@ -35,8 +34,7 @@
                     <field name="notification_level"/>
                     <field name="about"/>
                     <field name="name"/>
-                    <field name="regachat_id"/>
-                    <field name="regvente_id" />
+                    <!--<field name="reglement_ref"  />-->
 
                     <button string="OK" type="object" name="unlink" icon="fa-check"/>
                 </tree>
@@ -55,8 +53,7 @@
                             <field name="about"/>
                             <field name="name"/>
                             <field name="description"/>
-                            <field name="regachat_id" attrs="{'invisible': [('regachat_id','=','')]}"/>
-                            <field name="regvente_id" attrs="{'invisible': [('regvente_id','=','')]}" />
+                            <!--<field name="reglement_ref"  />-->
                         </group>
                     </sheet>
                 </form>
