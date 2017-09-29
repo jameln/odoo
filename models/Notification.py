@@ -21,15 +21,15 @@ class Notification(models.Model):
     ], required=True)
     description = fields.Text(string="Description")
 
-    regachat_id = fields.Many2one(
-        required=True,
-        index=True,
-        comodel_name="gctjara.regachat",
-        string="RA N°"
-    )
-    regvente_id = fields.Many2one(
-        required=True,
-        index=True,
-        comodel_name="gctjara.regvente",
-        string="RV N°"
-    )
+    # regachat_id = fields.Many2one(
+    #     required=True,
+    #     index=True,
+    #     comodel_name="gctjara.regachat",
+    #     string="RA N°"
+    # )
+    # reglement_ref= fields.Many2one(
+    #     required=True,
+    #     index=True,
+    #
+    #     string="Règlement N°"
+    # )

@@ -122,13 +122,13 @@ class ReglementAchat(models.Model):
             if difference_duration == 0:
                 valide=True
                 name = "Notification pour "+str(reg_id.numero)
-                description = "jour de paiement le règelment" + str(reg_id.numero)
+                description = "jour de paiement le règelment pour " + str(reg_id.facture_id.fournisseur_id.name)
                 level = 'info'
 
             elif difference_duration == -1:
                 valide = True
                 name = "Notification pour "+str(reg_id.numero)
-                description = "il reste un jour pour le paiement du   règelment" + str(reg_id.numero)
+                description = "il reste un jour pour le paiement du   règelment pour " + str(reg_id.facture_id.fournisseur_id.name)
                 level = 'warning'
             else:
                 valide = False
@@ -142,7 +142,7 @@ class ReglementAchat(models.Model):
                     'about': 'regachat',
                     'notification_level':level,
                     'notification_date': fields.datetime.today(),
-                    'regachat_id': reg_id.id
+                    # 'reglement_ref': str(reg_id.numero)
                 })
 
 

@@ -133,12 +133,12 @@ class ReglementVente(models.Model):
             if difference_duration == 0:
                 valide=True
                 name = "Notification pour "+str(regvt_id.numero)
-                description = "jour de recevoir de le règelment " + str(regvt_id.numero)
+                description = "jour de recevoir de le règelment " + str(regvt_id.facture_id.client_id.name)
                 level = 'info'
             elif difference_duration == -1:
                 valide = True
                 name = "Notification pour "+str(regvt_id.numero)
-                description = "il reste un jour pour la reception du   règelment" + str(regvt_id.numero)
+                description = "il reste un jour pour la reception du règelment du " + str(regvt_id.facture_id.client_id.name)
                 level = 'warning'
             else:
                 valide = False
@@ -152,7 +152,7 @@ class ReglementVente(models.Model):
                     'about': about,
                     'notification_level':level,
                     'notification_date': fields.datetime.today(),
-                    'regvente_id': regvt_id.id
+                    # 'reglement_ref': u""+str(regvt_id.numero)
                 })
 
         return True
